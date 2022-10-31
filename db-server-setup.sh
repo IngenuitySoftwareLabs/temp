@@ -147,7 +147,9 @@ starting 'Create the MySQL user and database'
 
 mysql -e "CREATE DATABASE $DB_DATABASE;" >> $LOG 2>&1
 mysql -e "CREATE USER '$DB_USERNAME'@'*' IDENTIFIED BY '$DB_PASSWORD';" >> $LOG 2>&1
+mysql -e "CREATE USER '$DB_USERNAME'@'localhost' IDENTIFIED BY '$DB_PASSWORD';" >> $LOG 2>&1
 mysql -e "GRANT ALL PRIVILEGES ON $DB_DATABASE.* TO '$DB_USERNAME'@'*';" >> $LOG 2>&1
+mysql -e "GRANT ALL PRIVILEGES ON $DB_DATABASE.* TO '$DB_USERNAME'@'localhost';" >> $LOG 2>&1
 mysql -e "FLUSH PRIVILEGES;" >> $LOG 2>&1
 
 finished 'Create the MySQL user and database'
