@@ -107,30 +107,11 @@ apt upgrade -y >> $LOG 2>&1
 finished 'Update the Ubuntu Server apt repository'
 
 #-------------------------------------------------------------------------------
-# Install required system commands
-#-------------------------------------------------------------------------------
-
-starting 'Install required system commands'
-
-apt install -y \
-    htop \
-    mytop \
-    net-tools \
-    curl \
-    unzip \
-    git \
-    >> $LOG 2>&1
-
-finished 'Install required system commands'
-
-#-------------------------------------------------------------------------------
 # Install and configure the MySQL database server
 #-------------------------------------------------------------------------------
 
 starting 'Install and configure the MySQL database server'
 
-apt install -y mysql-server >> $LOG 2>&1
-service mysql start >> $LOG 2>&1
 mysql -e "DELETE FROM mysql.user WHERE User='';" >> $LOG 2>&1
 mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');" >> $LOG 2>&1
 mysql -e "DROP DATABASE IF EXISTS test;" >> $LOG 2>&1
